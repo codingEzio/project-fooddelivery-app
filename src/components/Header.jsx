@@ -4,17 +4,18 @@ import { motion } from 'framer-motion';
 
 import Logo from '../img/logo.png';
 import Avatar from '../img/avatar.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="fixed z-50 w-screen p-6 px-16">
       {/* Desktop and Tablet */}
       <div className="hidden md:flex w-full h-full items-center justify-between">
-        <div className="flex items-center gap-2">
+        <Link to={'/'} className="flex items-center gap-2">
           <img src={Logo} className="w-8 object-cover" alt="An logo" />
 
           <p className="text-headingColor text-xl font-bold">City Food</p>
-        </div>
+        </Link>
 
         <div className="flex items-center gap-8">
           <ul className="flex items-center gap-8">
