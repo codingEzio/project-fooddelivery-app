@@ -133,7 +133,12 @@ const Header = () => {
       </div>
 
       {/* Mobile */}
-      <div className="flex md:hidden w-full h-full p-4"></div>
+      <div className="flex items-center justify-between md:hidden w-full h-full">
+        <Link to={'/'} className="flex items-center gap-2">
+          <img src={Logo} className="w-8 object-cover" alt="An logo" />
+          <p className="text-headingColor text-xl font-bold">City Food</p>
+        </Link>
+      </div>
     </header>
   );
 };
