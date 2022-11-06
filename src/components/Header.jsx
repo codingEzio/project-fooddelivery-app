@@ -38,6 +38,12 @@ const Header = () => {
               <p className="text-xs text-white font-semibold">7</p>
             </div>
           </div>
+
+          <img
+            src={Avatar}
+            className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl"
+            alt="User profile avatar"
+          />
         </div>
       </div>
 
