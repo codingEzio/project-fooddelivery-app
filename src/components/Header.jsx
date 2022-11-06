@@ -7,6 +7,10 @@ import Avatar from '../img/avatar.png';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const login = () => {
+    alert(1000);
+  };
+
   return (
     <header className="fixed z-50 w-screen p-6 px-16">
       {/* Desktop and Tablet */}
@@ -41,12 +45,15 @@ const Header = () => {
             </div>
           </div>
 
-          <motion.img
-            whileTap={{ scale: 0.7 }}
-            src={Avatar}
-            className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl cursor-pointer"
-            alt="User profile avatar"
-          />
+          <div className="relative">
+            <motion.img
+              whileTap={{ scale: 0.7 }}
+              src={Avatar}
+              className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl cursor-pointer"
+              alt="User profile avatar"
+              onClick={login}
+            />
+          </div>
         </div>
       </div>
 
