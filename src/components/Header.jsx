@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdShoppingBasket, MdAdd } from 'react-icons/md';
+import { MdShoppingBasket, MdAdd, MdLogout } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Link } from 'react-router-dom';
@@ -38,6 +38,16 @@ const Header = () => {
     } else {
       setIsMenu(!isMenu);
     }
+  };
+
+  const logout = () => {
+    setIsMenu(false);
+    localStorage.clear();
+
+    dispatch({
+      type: actionType.SET_USER,
+      user: null,
+    });
   };
 
   return (
@@ -107,6 +117,15 @@ const Header = () => {
                     </p>
                   </Link>
                 )}
+
+                {/* Logout */}
+                <p
+                  className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
+                  onClick={logout}
+                >
+                  <MdLogout />
+                  Logout
+                </p>
               </motion.div>
             )}
           </div>
