@@ -7,14 +7,14 @@ const Header = () => {
   return (
     <header className="fixed z-50 w-screen bg-slate-300 p-6 px-16">
       {/* Desktop and Tablet */}
-      <div className="hidden md:flex w-full h-full">
+      <div className="hidden md:flex w-full h-full items-center justify-between">
         <div className="flex items-center gap-2">
           <img src={Logo} className="w-8 object-cover" alt="An logo" />
 
           <p className="text-headingColor text-xl font-bold">City Food</p>
         </div>
 
-        <ul className="flex items-center gap-8 ml-auto">
+        <ul className="flex items-center gap-8">
           <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
             Home
           </li>
