@@ -1,5 +1,5 @@
-import React from 'react';
-import { MdShoppingBasket } from 'react-icons/md';
+import React, { useState } from 'react';
+import { MdShoppingBasket, MdAdd } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Link } from 'react-router-dom';
@@ -11,8 +11,16 @@ import { useStateValue } from '../context/StateProvider';
 import { actionType } from '../context/reducer';
 
 const Header = () => {
+  // Authenticatation backend
+
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
+
+  // Show the dropdown menu (addItem, logout)
+
+  const [isMenu, setIsMenu] = useState(false);
+
+  // Log in and inject globally
 
   const [{ user }, dispatch] = useStateValue();
 
@@ -27,6 +35,8 @@ const Header = () => {
         user: providerData[0],
       });
       localStorage.setItem('user', JSON.stringify(providerData[0]));
+    } else {
+      setIsMenu(!isMenu);
     }
   };
 
@@ -65,6 +75,7 @@ const Header = () => {
           </div>
 
           <div className="relative">
+            {/* img with motion */}
             <motion.img
               whileTap={{ scale: 0.7 }}
               src={user ? user.photoURL : Avatar}
@@ -72,6 +83,32 @@ const Header = () => {
               alt="User profile avatar"
               onClick={login}
             />
+
+            {/* div with motion */}
+            {isMenu && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.6 }}
+                className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
+              >
+                {/*
+                  Add new item (should be reserved for admin users only,
+                  though in order to keep it simple, we'd simply use the
+                  hardcoded email address as a workaround).
+                */}
+                {user && user.email === process.env.REACT_APP_ADMIN_EMAIL_ADDR && (
+                  <Link to={'/createItem'}>
+                    <p
+                      className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transition-all duration-100 ease-in-out text-textColor text-base"
+                      onClick={() => setIsMenu(false)}
+                    >
+                      <MdAdd /> New Item
+                    </p>
+                  </Link>
+                )}
+              </motion.div>
+            )}
           </div>
         </div>
       </div>
