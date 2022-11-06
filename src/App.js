@@ -10,7 +10,8 @@ const App = () => {
       <div className="w-screen h-auto flex flex-col bg-primary">
         <Home />
 
-        <main className="mt-24 p-8 w-full">
+        {/* note: Move the title closer to header on mobile */}
+        <main className="mt-16 md:mt-24 p-8 w-full">
           <Routes>
             <Route path="/*" element={<MainContainer />} />
             <Route path="/createItem" element={<CreateContainer />} />
