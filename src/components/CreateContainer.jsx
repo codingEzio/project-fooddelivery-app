@@ -17,7 +17,7 @@ const CreateContainer = () => {
 
   return (
     <div className="flex w-full min-h-screen items-center justify-center">
-      <div className="flex flex-col w-[90%] md:w-[75%] border-gray-300 rounded-lg p-4 items-center justify-center">
+      <div className="flex flex-col w-[90%] md:w-[75%] border-gray-300 rounded-lg p-4 items-center justify-center gap-4">
         {fields && (
           <motion.p
             initial={{ opacity: 0 }}
@@ -33,7 +33,7 @@ const CreateContainer = () => {
           </motion.p>
         )}
 
-        <div className="flex w-full py-2 border-b border-gray-300 items-center gap-4">
+        <div className="flex w-full py-2 border-b border-gray-300 items-center gap-2">
           <MdFastfood className="text-xl text-gray-700" />
 
           <input
