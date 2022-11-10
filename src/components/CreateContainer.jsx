@@ -26,6 +26,8 @@ const CreateContainer = () => {
   const uploadImage = () => {};
   const deleteImage = () => {};
 
+  const saveDetails = () => {};
+
   return (
     <div className="flex w-full min-h-screen items-center justify-center">
       <div className="flex flex-col w-[90%] md:w-[75%] border-gray-300 rounded-lg p-4 items-center justify-center gap-4">
@@ -121,7 +123,6 @@ const CreateContainer = () => {
             </>
           )}
         </div>
-
         <div className="flex flex-col md:flex-row w-full items-center gap-3">
           <div className="flex w-full py-2 border-b border-gray-300 items-enter gap-2">
             <MdFoodBank className="text-gray-700 text-2xl" />
@@ -136,7 +137,6 @@ const CreateContainer = () => {
             />
           </div>
         </div>
-
         <div className="flex flex-col md:flex-row w-full items-center gap-3">
           <div className="flex w-full py-2 border-b border-gray-300 items-enter gap-2">
             <MdAttachMoney className="text-gray-700 text-2xl" />
@@ -150,6 +150,16 @@ const CreateContainer = () => {
               className="w-full h-full text-lg bg-transparent font-semibold placeholder:text-gray-300 outline-none border-none"
             />
           </div>
+        </div>
+
+        <div className="flex w-full items-center">
+          <button
+            type="button"
+            className="w-full md:w-auto ml-0 md:ml-auto border-none outline-none px-12 py-2 text-white text-lg font-semibold bg-emerald-500 rounded-lg"
+            onClick={saveDetails}
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
