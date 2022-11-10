@@ -7,15 +7,15 @@ const RowContainer = ({ flag, data }) => {
 
   return (
     <div
-      className={`w-full my-12 ${
-        flag ? 'overflow-x-scroll' : 'overflow-x-hidden'
+      className={`flex w-full my-12 gap-3 items-center ${
+        flag ? 'overflow-x-scroll' : 'overflow-x-hidden flex-wrap'
       }`}
     >
       {data &&
         data.map(item => (
           <div
             key={item.id}
-            className="w-300 md:w-340 h-auto bg-cardOverlay my-12 p-2 bg-gray-150 rounded-lg hover:drop-shadow-lg backdrop-blur-lg"
+            className="w-300 min-w-[300px] md:w-340 md:min-w-[340px] h-auto bg-cardOverlay my-12 p-2 bg-gray-150 rounded-lg hover:drop-shadow-lg backdrop-blur-lg"
           >
             <div className="flex w-full items-center justify-between">
               <motion.img
