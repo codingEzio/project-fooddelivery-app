@@ -2,6 +2,7 @@ import React from 'react';
 
 import Delivery from '../img/delivery.png';
 import HeroBg from '../img/heroBg.png';
+import HeroProduct from '../img/i1.png';
 
 const HomeContainer = () => {
   return (
@@ -43,14 +44,31 @@ const HomeContainer = () => {
         </button>
       </div>
 
-      <div className="py-2 flex flex-1 items-center">
+      <div className="py-2 flex flex-1 items-center relative">
         <img
           src={HeroBg}
           className="ml-auto w-full h-420 lg:w-auto lg:h-650"
-          alt="Home page background"
+          alt="Homepage background"
         />
 
-        <div className="w-full h-full absolute flex items-center justify-center"></div>
+        <div className="flex w-full h-full absolute top-0 left-0 px-32 py-4 items-center justify-center">
+          <div className="flex flex-col w-190 p-4 bg-cardOverlay backdrop:blur-md rounded-3xl items-center justify-center">
+            <img
+              src={HeroProduct}
+              className="w-40 -mt-20"
+              alt="Homepage product"
+            />
+            <p className="text-xl font-semibold text-textColor my-1">Icecream</p>
+
+            <p className="text-sm font-semibold text-lighttextGray my-1">
+              Chocolate & Vanilla
+            </p>
+
+            <p className="text-sm font-semibold text-headingColor">
+              <span className="text-ts text-red-600">$</span> 3.75
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
