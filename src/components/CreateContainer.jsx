@@ -31,6 +31,13 @@ const CreateContainer = () => {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const setFAM = (status, message) => {
+    setFields(true);
+
+    setAlertStatus(status);
+    setMessage(message);
+  };
+
   const uploadImage = e => {
     setIsLoading(true);
 
@@ -49,9 +56,7 @@ const CreateContainer = () => {
         console.log(error);
 
         setFields(true);
-
-        setAlertStatus('danger');
-        setMessage('Error while uploading, please try again 😊');
+        setFAM('danger', 'Error when uploading, try again pls');
 
         setTimeout(() => {
           setFields(false);
@@ -62,11 +67,8 @@ const CreateContainer = () => {
         getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
           setImageAsset(downloadURL);
 
-          setFields(true);
           setIsLoading(false);
-
-          setAlertStatus('success');
-          setMessage('Image uploaded');
+          setFAM('success', 'Image uploaded');
 
           setTimeout(() => {
             setFields(false);
@@ -84,10 +86,7 @@ const CreateContainer = () => {
       setImageAsset(null);
 
       setIsLoading(false);
-      setFields(true);
-
-      setAlertStatus('success');
-      setMessage('Image deleted successfully 🤠');
+      setFAM('success', 'Image deleted successfully');
 
       setTimeout(() => {
         setFields(false);
@@ -103,10 +102,7 @@ const CreateContainer = () => {
     // failed upload -> error
     try {
       if (!title || !calories || !imageAsset || !price || !category) {
-        setFields(true);
-
-        setAlertStatus('danger');
-        setMessage('Required fields cannot be empty 😳');
+        setFAM('danger', 'Required fields cannot be empty');
 
         setTimeout(() => {
           setFields(false);
@@ -125,11 +121,8 @@ const CreateContainer = () => {
 
         saveItem(data);
 
-        setFields(true);
         setIsLoading(false);
-
-        setAlertStatus('success');
-        setMessage('Product data uploaded successfully 😊');
+        setFAM('success', 'Product data uploaded successfully');
 
         clearData();
 
@@ -140,10 +133,7 @@ const CreateContainer = () => {
     } catch (error) {
       console.log(error);
 
-      setFields(true);
-
-      setAlertStatus('danger');
-      setMessage('Error while uploading, please try again 😳');
+      setFAM('danger', 'Error while uploading, try again pls');
 
       setTimeout(() => {
         setFields(false);
