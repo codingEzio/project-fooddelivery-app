@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MdCloudUpload, MdDelete, MdFastfood } from 'react-icons/md';
+import {
+  MdAttachMoney,
+  MdCloudUpload,
+  MdDelete,
+  MdFastfood,
+  MdFoodBank,
+} from 'react-icons/md';
 
 import { categories } from '../utils/data';
 import Loader from './Loader';
@@ -37,7 +43,6 @@ const CreateContainer = () => {
             {message}
           </motion.p>
         )}
-
         <div className="flex w-full py-2 border-b border-gray-300 items-center gap-2">
           <MdFastfood className="text-xl text-gray-700" />
 
@@ -50,7 +55,6 @@ const CreateContainer = () => {
             className="w-full h-full text-lg bg-transparent font-semibold placeholder:text-gray-300 outline-none border-none"
           />
         </div>
-
         <div className="w-full">
           <select
             onChange={e => setCategory(e.target.value)}
@@ -72,7 +76,6 @@ const CreateContainer = () => {
               ))}
           </select>
         </div>
-
         <div className="flex flex-col group w-full h-225 md:h-420 cursor-pointer border-2 border-groove border-gray-300 rounded-lg items-center justify-center">
           {isLoading ? (
             <Loader />
@@ -117,6 +120,36 @@ const CreateContainer = () => {
               )}
             </>
           )}
+        </div>
+
+        <div className="flex flex-col md:flex-row w-full items-center gap-3">
+          <div className="flex w-full py-2 border-b border-gray-300 items-enter gap-2">
+            <MdFoodBank className="text-gray-700 text-2xl" />
+
+            <input
+              type="text"
+              required
+              value={calories}
+              onChange={e => setCalories(e.target.value)}
+              placeholder="Calories"
+              className="w-full h-full text-lg bg-transparent font-semibold placeholder:text-gray-300 outline-none border-none"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row w-full items-center gap-3">
+          <div className="flex w-full py-2 border-b border-gray-300 items-enter gap-2">
+            <MdAttachMoney className="text-gray-700 text-2xl" />
+
+            <input
+              type="text"
+              required
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              placeholder="Price"
+              className="w-full h-full text-lg bg-transparent font-semibold placeholder:text-gray-300 outline-none border-none"
+            />
+          </div>
         </div>
       </div>
     </div>
