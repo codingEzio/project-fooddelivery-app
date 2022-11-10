@@ -7,7 +7,9 @@ import {
   MdFastfood,
   MdFoodBank,
 } from 'react-icons/md';
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
+import { storage } from '../firebase.config';
 import { categories } from '../utils/data';
 import Loader from './Loader';
 
@@ -23,7 +25,50 @@ const CreateContainer = () => {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const uploadImage = () => {};
+  const uploadImage = e => {
+    setIsLoading(true);
+
+    const imageFile = e.target.files[0];
+
+    const storageRef = ref(storage, `images/${Date.now()}-${imageFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, imageFile);
+
+    uploadTask.on(
+      'state_changed',
+      snapshot => {
+        const uploadProgress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      },
+      error => {
+        console.log(error);
+
+        setFields(true);
+
+        setAlertStatus('danger');
+        setMessage('Error while uploading, please try again 😄');
+
+        setTimeout(() => {
+          setFields(false);
+          setIsLoading(false);
+        }, 4000);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
+          setImageAsset(downloadURL);
+
+          setFields(true);
+          setIsLoading(false);
+
+          setAlertStatus('success');
+          setMessage('Image uploaded');
+
+          setTimeout(() => {
+            setFields(false);
+          }, 4000);
+        });
+      },
+    );
+  };
   const deleteImage = () => {};
 
   const saveDetails = () => {};
