@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { MdFastfood } from 'react-icons/md';
 
 const CreateContainer = () => {
   const [title, setTitle] = useState('');
@@ -29,6 +30,19 @@ const CreateContainer = () => {
             {message}
           </motion.p>
         )}
+
+        <div className="flex w-full py-2 border-b border-gray-300 items-center gap-4">
+          <MdFastfood className="text-xl text-gray-700" />
+
+          <input
+            type="text"
+            required
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder="Input the title of the product"
+            className="w-full h-full text-lg bg-transparent font-semibold placeholder:text-gray-300 outline-none border-none"
+          />
+        </div>
       </div>
     </div>
   );
