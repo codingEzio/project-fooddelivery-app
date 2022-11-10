@@ -51,7 +51,7 @@ const HomeContainer = () => {
           alt="Homepage background"
         />
 
-        <div className="flex flex-wrap w-full h-full absolute top-0 left-0 py-4 items-center justify-center gap-4">
+        <div className="flex flex-wrap w-full h-full absolute top-0 left-0 lg:px-32 py-4 items-center justify-center gap-4">
           {heroData &&
             heroData.map(n => (
               <div
