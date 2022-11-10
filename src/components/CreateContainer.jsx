@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MdCloudUpload, MdFastfood } from 'react-icons/md';
+import { MdCloudUpload, MdDelete, MdFastfood } from 'react-icons/md';
 
 import { categories } from '../utils/data';
 import Loader from './Loader';
@@ -18,6 +18,7 @@ const CreateContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const uploadImage = () => {};
+  const deleteImage = () => {};
 
   return (
     <div className="flex w-full min-h-screen items-center justify-center">
@@ -82,13 +83,37 @@ const CreateContainer = () => {
                   <div className="flex flex-col w-full h-full items-center justify-center gap-2">
                     <MdCloudUpload className="text-gray-500 text-3xl hover:text-gray-700" />
 
-                    <p className="text-gray-500 hover:text-gray-700">Click here to upload</p>
+                    <p className="text-gray-500 hover:text-gray-700">
+                      Click here to upload
+                    </p>
                   </div>
 
-                  <input type="file" name="uploadImage" accept="image/*" onChange={uploadImage} className="w-0 h-0"/>
+                  <input
+                    type="file"
+                    name="uploadImage"
+                    accept="image/*"
+                    onChange={uploadImage}
+                    className="w-0 h-0"
+                  />
                 </label>
               ) : (
-                <></>
+                <>
+                  <div className="relative h-full">
+                    <img
+                      src={imageAsset}
+                      alt="The one awaits for upload"
+                      className="w-full h-full object-cover"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={deleteImage}
+                      className="absolute buttom-3 right-3 p-3 rounded-full bg-red-500 text-xl cursor-pointer outline-none hover:shadow-md duration-500 transition-all ease-in-out"
+                    >
+                      <MdDelete className="text-white" />
+                    </button>
+                  </div>
+                </>
               )}
             </>
           )}
