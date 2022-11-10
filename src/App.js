@@ -4,14 +4,18 @@ import { AnimatePresence } from 'framer-motion';
 
 import { Header, MainContainer, CreateContainer } from './components';
 import { useStateValue } from './context/StateProvider';
+import { actionType } from './context/reducer';
 import { getAllFoodItems } from './utils/firebaseFunctions';
 
 const App = () => {
-  const [{}, dispatch] = useStateValue();
+  const [{ foodItems }, dispatch] = useStateValue();
 
   const fetchData = async () => {
     await getAllFoodItems().then(data => {
-      console.log(data);
+      dispatch({
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data,
+      });
     });
   };
 
