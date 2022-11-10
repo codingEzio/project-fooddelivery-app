@@ -8,7 +8,9 @@ const RowContainer = ({ flag, data }) => {
   return (
     <div
       className={`flex w-full my-12 gap-3 items-center ${
-        flag ? 'overflow-x-scroll' : 'overflow-x-hidden flex-wrap'
+        flag
+          ? 'overflow-x-scroll scrollbar-none'
+          : 'overflow-x-hidden flex-wrap'
       }`}
     >
       {data &&
