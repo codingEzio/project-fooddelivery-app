@@ -3,8 +3,6 @@ import { MdShoppingBasket } from 'react-icons/md';
 import { motion } from 'framer-motion';
 
 const RowContainer = ({ flag, data, scrollValue }) => {
-  console.log(data);
-
   const rowContainerRef = useRef();
 
   useEffect(() => {
@@ -23,13 +21,13 @@ const RowContainer = ({ flag, data, scrollValue }) => {
       {data &&
         data.map(item => (
           <div
-            key={item.id}
-            className="w-300 min-w-[300px] md:w-340 md:min-w-[340px] h-auto bg-cardOverlay my-12 p-2 bg-gray-150 rounded-lg hover:drop-shadow-lg backdrop-blur-lg"
+            key={item?.id}
+            className="flex flex-col w-300 h-[225px] min-w-[300px] md:w-340 md:min-w-[340px] bg-cardOverlay my-12 p-2 bg-gray-150 rounded-lg hover:drop-shadow-lg backdrop-blur-lg items-center justify-between"
           >
             <div className="flex w-full items-center justify-between">
               <motion.img
                 whileHover={{ scale: 1.07 }}
-                src="https://picsum.photos/300"
+                src={item?.imageURL}
                 alt="Random"
                 className="w-40 -mt-8 drop-shadow-2xl"
               />
@@ -44,13 +42,15 @@ const RowContainer = ({ flag, data, scrollValue }) => {
 
             <div className="flex flex-col w-full items-end justify-end">
               <p className="text-base md:text-lg font-semibold text-textColor ">
-                Choco & Vanilla
+                {item?.title}
               </p>
-              <p className="mt-1 text-sm text-gray-500">455 calories</p>
+              <p className="mt-1 text-sm text-gray-500">
+                {item?.calories} Calories
+              </p>
 
               <div className="flex gap-8 items-center">
                 <p className="text-lg font-semibold text-headingColor">
-                  <span className="text-sm text-red-500">$</span> 5.75
+                  <span className="text-sm text-red-500">$</span> {item?.price}
                 </p>
               </div>
             </div>
