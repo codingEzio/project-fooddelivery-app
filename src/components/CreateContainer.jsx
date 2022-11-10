@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MdFastfood } from 'react-icons/md';
+import { MdCloudUpload, MdFastfood } from 'react-icons/md';
 
 import { categories } from '../utils/data';
+import Loader from './Loader';
 
 const CreateContainer = () => {
   const [title, setTitle] = useState('');
   const [calories, setCalories] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState(null);
+  const [imageAsset, setImageAsset] = useState(null);
 
   const [fields, setFields] = useState(false);
   const [alertStatus, setAlertStatus] = useState('danger');
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const uploadImage = () => {};
 
   return (
     <div className="flex w-full min-h-screen items-center justify-center">
@@ -66,6 +70,28 @@ const CreateContainer = () => {
                 </option>
               ))}
           </select>
+        </div>
+
+        <div className="flex flex-col group w-full h-225 md:h-420 cursor-pointer border-2 border-groove border-gray-300 rounded-lg items-center justify-center">
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              {!imageAsset ? (
+                <label className="flex flex-col w-full h-full items-center justify-center cursor-pointer">
+                  <div className="flex flex-col w-full h-full items-center justify-center gap-2">
+                    <MdCloudUpload className="text-gray-500 text-3xl hover:text-gray-700" />
+
+                    <p className="text-gray-500 hover:text-gray-700">Click here to upload</p>
+                  </div>
+
+                  <input type="file" name="uploadImage" accept="image/*" onChange={uploadImage} className="w-0 h-0"/>
+                </label>
+              ) : (
+                <></>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
