@@ -17,6 +17,7 @@ import {
 import { storage } from '../firebase.config';
 import { categories } from '../utils/data';
 import Loader from './Loader';
+import { saveItem } from '../utils/firebaseFunctions';
 
 const CreateContainer = () => {
   const [title, setTitle] = useState('');
@@ -94,7 +95,71 @@ const CreateContainer = () => {
     });
   };
 
-  const saveDetails = () => {};
+  const saveDetails = () => {
+    setIsLoading(true);
+
+    // Two scenarios
+    //  doing upload -> (1) fields missing (2) full, start uploading
+    // failed upload -> error
+    try {
+      if (!title || !calories || !imageAsset || !price || !category) {
+        setFields(true);
+
+        setAlertStatus('danger');
+        setMessage('Required fields cannot be empty 😳');
+
+        setTimeout(() => {
+          setFields(false);
+
+          setIsLoading(false);
+        }, 4000);
+      } else {
+        const data = {
+          id: `${Date.now()}`,
+          title: title,
+          imageURL: imageAsset,
+          category: category,
+          quantity: 1,
+          price: price,
+        };
+
+        saveItem(data);
+
+        setFields(true);
+        setIsLoading(false);
+
+        setAlertStatus('success');
+        setMessage('Product data uploaded successfully 😊');
+
+        clearData();
+
+        setTimeout(() => {
+          setFields(false);
+        }, 4000);
+      }
+    } catch (error) {
+      console.log(error);
+
+      setFields(true);
+
+      setAlertStatus('danger');
+      setMessage('Error while uploading, please try again 😳');
+
+      setTimeout(() => {
+        setFields(false);
+
+        setIsLoading(false);
+      }, 4000);
+    }
+  };
+
+  const clearData = () => {
+    setTitle('');
+    setImageAsset(null);
+    setCalories('');
+    setPrice('');
+    setCalories('Select Category');
+  };
 
   return (
     <div className="flex w-full min-h-screen items-center justify-center">
