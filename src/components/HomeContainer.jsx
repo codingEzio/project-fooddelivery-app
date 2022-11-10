@@ -46,7 +46,7 @@ const HomeContainer = () => {
       <div className="py-2 flex flex-1 items-center">
         <img
           src={HeroBg}
-          className="ml-auto h-650"
+          className="ml-auto w-full h-420 lg:w-auto lg:h-650"
           alt="Home page background"
         />
 
