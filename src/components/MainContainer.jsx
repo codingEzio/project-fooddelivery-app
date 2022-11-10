@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
@@ -8,6 +8,9 @@ import { useStateValue } from '../context/StateProvider';
 
 const MainContainer = () => {
   const [{ foodItems }, dispatch] = useStateValue();
+
+  const [scrollValue, setScrollValue] = useState(0);
+  useEffect(() => {}, [scrollValue]);
 
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
@@ -27,18 +30,25 @@ const MainContainer = () => {
               whileTap={{ scale: 0.75 }}
               className="flex w-8 h-8 rounded-lg bg-orange300 hover:bg-orange-500 transition-all duration-100 ease-in-out hover:shadow-lg cursor-pointer items-center justify-center"
             >
-              <MdChevronLeft className="text-lg text-white" />
+              <MdChevronLeft
+                className="text-lg text-white"
+                onClick={() => setScrollValue(-200)}
+              />
             </motion.div>
             <motion.div
               whileTap={{ scale: 0.75 }}
               className="flex w-8 h-8 rounded-lg bg-orange300 hover:bg-orange-500 transition-all duration-100 ease-in-out hover:shadow-lg cursor-pointer items-center justify-center"
             >
-              <MdChevronRight className="text-lg text-white" />
+              <MdChevronRight
+                className="text-lg text-white"
+                onClick={() => setScrollValue(200)}
+              />
             </motion.div>
           </div>
         </div>
 
         <RowContainer
+          scrollValue={scrollValue}
           flag={true}
           data={foodItems?.filter(n => n.quantity >= 1)}
         />
