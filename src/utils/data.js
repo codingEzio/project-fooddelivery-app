@@ -1,7 +1,7 @@
 import heroProduct01 from '../img/i1.png';
-import heroProduct02 from '../img/i2.png';
-import heroProduct03 from '../img/i3.png';
-import heroProduct04 from '../img/i4.png';
+import heroProduct02 from '../img/f1.png';
+import heroProduct03 from '../img/c3.png';
+import heroProduct04 from '../img/fi1.png';
 
 export const heroProductData = [
   {
