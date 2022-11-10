@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import HomeContainer from './HomeContainer';
+import RowContainer from './RowContainer';
 
 const MainContainer = () => {
   return (
@@ -33,6 +34,8 @@ const MainContainer = () => {
             </motion.div>
           </div>
         </div>
+
+        <RowContainer flag={true} />
       </section>
     </div>
   );
