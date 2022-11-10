@@ -7,7 +7,12 @@ import {
   MdFastfood,
   MdFoodBank,
 } from 'react-icons/md';
-import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import {
+  ref,
+  getDownloadURL,
+  uploadBytesResumable,
+  deleteObject,
+} from 'firebase/storage';
 
 import { storage } from '../firebase.config';
 import { categories } from '../utils/data';
@@ -45,7 +50,7 @@ const CreateContainer = () => {
         setFields(true);
 
         setAlertStatus('danger');
-        setMessage('Error while uploading, please try again 😄');
+        setMessage('Error while uploading, please try again 😊');
 
         setTimeout(() => {
           setFields(false);
@@ -69,7 +74,25 @@ const CreateContainer = () => {
       },
     );
   };
-  const deleteImage = () => {};
+  const deleteImage = () => {
+    setIsLoading(true);
+
+    const deleteRef = ref(storage, imageAsset);
+
+    deleteObject(deleteRef).then(() => {
+      setImageAsset(null);
+
+      setIsLoading(false);
+      setFields(true);
+
+      setAlertStatus('success');
+      setMessage('Image deleted successfully 🤠');
+
+      setTimeout(() => {
+        setFields(false);
+      }, 400);
+    });
+  };
 
   const saveDetails = () => {};
 
