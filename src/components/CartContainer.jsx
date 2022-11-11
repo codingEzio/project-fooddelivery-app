@@ -18,7 +18,12 @@ const CartContainer = () => {
   };
 
   return (
-    <div className="flex flex-col fixed w-full md:w-375 h-screen top-0 right-0 z-[101] bg-white drop-shadow-md">
+    <motion.div
+      initial={{ opacity: 0, x: 200 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 200 }}
+      className="flex flex-col fixed w-full md:w-375 h-screen top-0 right-0 z-[101] bg-white drop-shadow-md"
+    >
       <div className="flex w-full p-4 cursor-pointer items-center justify-between">
         {/* Buttons */}
         <motion.div whileTap={{ scale: 0.75 }} onClick={showCart}>
@@ -28,7 +33,7 @@ const CartContainer = () => {
 
         <motion.p
           whileTap={{ scale: 0.75 }}
-          className="flex p-1 px-2 my-2 text-base text-textColor bg-gray-100 rounded-md hover:shadow-md duration-100 ease-in-out transition-all cursor-pointer items-center gap-2"
+          className="flex p-1 px-2 my-2 text-base text-textColor bg-gray-100 rounded-md hover:shadow-md cursor-pointer items-center gap-2"
         >
           Clear <RiRefreshFill />{' '}
         </motion.p>
@@ -88,14 +93,14 @@ const CartContainer = () => {
             <motion.button
               whileTap={{ scale: 0.8 }}
               type="button"
-              className="w-full text-lg p-2 my-2 text-gray-50 bg-gradient-to-tr from-orange-400 to-orange-600 rounded-full hover:shadow-lg transition-all duration-150 ease-out"
+              className="w-full text-lg p-2 my-2 text-gray-50 bg-gradient-to-tr from-orange-400 to-orange-600 rounded-full hover:shadow-lg"
             >
               Check Out
             </motion.button>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
