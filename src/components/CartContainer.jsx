@@ -25,7 +25,7 @@ const CartContainer = () => {
       {/* Buttom */}
       <div className="flex flex-col w-full h-full bg-cartBg rounded-t-[2rem]">
         <div className="flex flex-col w-full h-340 md:h-42 px-6 py-10 gap-3 overflow-y-scroll scrollbar-none">
-          {/* Cart Item */}
+          {/* Cart -> Single Item */}
           <div className="flex w-full p-1 px-2 bg-cartItem rounded-lg gap-2 items-center">
             {/* product image */}
             <img
@@ -53,6 +53,33 @@ const CartContainer = () => {
                 <BiPlus className="text-gray-50" />
               </motion.div>
             </div>
+          </div>
+
+          {/* Cart -> Total Summary */}
+          <div className="flex flex-col flex-1 w-full px-8 py-2 bg-cartTotal rounded-t-[2rem] items-center justify-evenly">
+            <div className="flex w-full items-center justify-between">
+              <p className="text-gray-400 text-lg">Sub Total</p>
+              <p className="text-gray-400 text-lg">$ 8.5</p>
+            </div>
+            <div className="flex w-full items-center justify-between">
+              <p className="text-gray-400 text-lg">Delivery</p>
+              <p className="text-gray-400 text-lg">$ 3.0</p>
+            </div>
+
+            <div className="w-full my-2 border-b border-gray-600"></div>
+
+            <div className="flex w-full items-center justify-between">
+              <p className="text-xl text-gray-200 font-semibold">Total</p>
+              <p className="text-xl text-gray-200 font-semibold">$11.5</p>
+            </div>
+
+            <motion.button
+              whileTap={{ scale: 0.8 }}
+              type="button"
+              className="w-full text-lg p-2 my-2 text-gray-50 bg-gradient-to-tr from-orange-400 to-orange-600 rounded-full hover:shadow-lg transition-all duration-150 ease-out"
+            >
+              Check Out
+            </motion.button>
           </div>
         </div>
       </div>
