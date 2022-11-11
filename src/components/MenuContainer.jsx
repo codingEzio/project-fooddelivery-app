@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IoFastFood } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 
 import { categories } from '../utils/data';
 
@@ -21,8 +22,9 @@ const MenuContainer = () => {
         <div className="flex w-full lg:justify-center items-center justify-center gap-8 py-6 overflow-x-scroll scrollbar-none">
           {categories &&
             categories.map(sole_category => (
-              <div
+              <motion.div
                 key={sole_category.id}
+                whileTap={{ scale: 0.65 }}
                 className={`flex flex-col w-24 min-w-[94px] h-28 ${
                   filter === sole_category.urlParamName
                     ? 'bg-cartNumBg'
@@ -55,7 +57,7 @@ const MenuContainer = () => {
                 >
                   {sole_category.name}
                 </p>
-              </div>
+              </motion.div>
             ))}
         </div>
       </div>
