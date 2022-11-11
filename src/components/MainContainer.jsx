@@ -30,20 +30,16 @@ const MainContainer = () => {
             <motion.div
               whileTap={{ scale: 0.75 }}
               className="flex w-8 h-8 rounded-lg bg-orange300 hover:bg-orange-500 transition-all duration-100 ease-in-out hover:shadow-lg cursor-pointer items-center justify-center"
+              onClick={() => setScrollValue(-200)}
             >
-              <MdChevronLeft
-                className="text-lg text-white"
-                onClick={() => setScrollValue(-200)}
-              />
+              <MdChevronLeft className="text-lg text-white" />
             </motion.div>
             <motion.div
               whileTap={{ scale: 0.75 }}
               className="flex w-8 h-8 rounded-lg bg-orange300 hover:bg-orange-500 transition-all duration-100 ease-in-out hover:shadow-lg cursor-pointer items-center justify-center"
+              onClick={() => setScrollValue(200)}
             >
-              <MdChevronRight
-                className="text-lg text-white"
-                onClick={() => setScrollValue(200)}
-              />
+              <MdChevronRight className="text-lg text-white" />
             </motion.div>
           </div>
         </div>
