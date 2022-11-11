@@ -9,7 +9,7 @@ import { actionType } from '../context/reducer';
 import emptyCart from '../img/emptyCart.svg';
 
 const CartContainer = () => {
-  const [{ cartShow, cartItems }, dispatch] = useStateValue();
+  const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
 
   const showCart = () => {
     dispatch({
@@ -100,13 +100,23 @@ const CartContainer = () => {
                 <p className="text-xl text-gray-200 font-semibold">$11.5</p>
               </div>
 
-              <motion.button
-                whileTap={{ scale: 0.8 }}
-                type="button"
-                className="w-full text-lg p-2 my-2 text-gray-50 bg-gradient-to-tr from-orange-400 to-orange-600 rounded-full hover:shadow-lg"
-              >
-                Check Out
-              </motion.button>
+              {user ? (
+                <motion.button
+                  whileTap={{ scale: 0.8 }}
+                  type="button"
+                  className="w-full text-lg p-2 my-2 text-gray-50 bg-gradient-to-tr from-orange-400 to-orange-600 rounded-full hover:shadow-lg"
+                >
+                  Check Out
+                </motion.button>
+              ) : (
+                <motion.button
+                  whileTap={{ scale: 0.8 }}
+                  type="button"
+                  className="w-full text-lg p-2 my-2 text-gray-50 bg-gradient-to-tr from-orange-400 to-orange-600 rounded-full italic hover:shadow-lg"
+                >
+                  Log in Required
+                </motion.button>
+              )}
             </div>
           </div>
         </div>
