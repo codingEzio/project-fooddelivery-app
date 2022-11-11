@@ -15,7 +15,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
       className={`flex w-full my-12 gap-3 items-center scroll-smooth ${
         flag
           ? 'overflow-x-scroll scrollbar-none'
-          : 'overflow-x-hidden flex-wrap'
+          : 'overflow-x-hidden flex-wrap justify-center'
       }`}
     >
       {data &&
@@ -25,12 +25,17 @@ const RowContainer = ({ flag, data, scrollValue }) => {
             className="flex flex-col w-300 h-[225px] min-w-[300px] md:w-340 md:min-w-[340px] bg-cardOverlay my-12 p-2 bg-gray-150 rounded-lg hover:drop-shadow-lg backdrop-blur-lg items-center justify-between"
           >
             <div className="flex w-full items-center justify-between">
-              <motion.img
-                whileHover={{ scale: 1.07 }}
-                src={item?.imageURL}
-                alt="Random"
-                className="w-40 -mt-8 drop-shadow-2xl"
-              />
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                className="w-40 h-40 -mt-8 drop-shadow-2xl"
+              >
+                <img
+                  whileHover={{ scale: 1.07 }}
+                  src={item?.imageURL}
+                  alt="Random"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
 
               <motion.div
                 whileTap={{ scale: 0.75 }}
