@@ -22,7 +22,7 @@ const Header = () => {
 
   // Log in and inject globally
 
-  const [{ user, cartShow }, dispatch] = useStateValue();
+  const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
 
   const login = async () => {
     if (!user) {
@@ -89,9 +89,13 @@ const Header = () => {
           >
             <MdShoppingBasket className="text-textColor text-2xl ml-8 cursor-pointer" />
 
-            <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
-              <p className="text-xs text-white font-semibold">7</p>
-            </div>
+            {cartItems && cartItems.length > 0 && (
+              <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
+                <p className="text-xs text-white font-semibold">
+                  {cartItems.length}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="relative">
@@ -150,9 +154,13 @@ const Header = () => {
             onClick={showCart}
           />
 
-          <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
-            <p className="text-xs text-white font-semibold">7</p>
-          </div>
+          {cartItems && cartItems.length > 0 && (
+            <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
+              <p className="text-xs text-white font-semibold">
+                {cartItems.length}
+              </p>
+            </div>
+          )}
         </div>
 
         <Link to={'/'} className="flex items-center gap-2">
