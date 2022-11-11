@@ -22,7 +22,7 @@ const Header = () => {
 
   // Log in and inject globally
 
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, cartShow }, dispatch] = useStateValue();
 
   const login = async () => {
     if (!user) {
@@ -47,6 +47,13 @@ const Header = () => {
     dispatch({
       type: actionType.SET_USER,
       user: null,
+    });
+  };
+
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow: !cartShow,
     });
   };
 
@@ -76,7 +83,10 @@ const Header = () => {
             </li>
           </ul>
 
-          <div className="relative flex items-center justify-center">
+          <div
+            className="relative flex items-center justify-center"
+            onClick={showCart}
+          >
             <MdShoppingBasket className="text-textColor text-2xl ml-8 cursor-pointer" />
 
             <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
@@ -135,7 +145,10 @@ const Header = () => {
       {/* Mobile */}
       <div className="flex items-center justify-between md:hidden w-full h-full">
         <div className="relative flex items-center justify-center">
-          <MdShoppingBasket className="text-textColor text-2xl ml-8 cursor-pointer" />
+          <MdShoppingBasket
+            className="text-textColor text-2xl ml-8 cursor-pointer"
+            onClick={showCart}
+          />
 
           <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
             <p className="text-xs text-white font-semibold">7</p>
