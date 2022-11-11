@@ -8,7 +8,7 @@ import { useStateValue } from '../context/StateProvider';
 import { actionType } from '../context/reducer';
 
 const CartContainer = () => {
-  const [{ cartShow }, dispatch] = useStateValue();
+  const [{ cartShow, cartItems }, dispatch] = useStateValue();
 
   const showCart = () => {
     dispatch({
@@ -42,35 +42,43 @@ const CartContainer = () => {
       {/* Buttom */}
       <div className="flex flex-col w-full h-full bg-cartBg rounded-t-[2rem]">
         <div className="flex flex-col w-full h-340 md:h-42 px-6 py-10 gap-3 overflow-y-scroll scrollbar-none">
-          {/* Cart -> Single Item */}
-          <div className="flex w-full p-1 px-2 bg-cartItem rounded-lg gap-2 items-center">
-            {/* product image */}
-            <img
-              src="https://picsum.photos/200"
-              alt="Cart item"
-              className="w-20 h-20 max-w-[60px] rounded-full object-contain"
-            />
-            {/* product name and price */}
-            <div className="flex flex-col gap-2">
-              <p className="text-base text-gray-50">Choco Vanilla</p>
-              <p className="text-sm font-semibold text-gray-300 block">$15.5</p>
-            </div>
+          {/* Cart -> Item list */}
+          {cartItems &&
+            cartItems.map(item => (
+              <div
+                key={item.id}
+                className="flex w-full p-1 px-2 bg-cartItem rounded-lg gap-2 items-center"
+              >
+                {/* product image */}
+                <img
+                  src={item?.imageURL}
+                  alt="Cart item"
+                  className="w-20 h-20 max-w-[60px] rounded-full object-contain"
+                />
+                {/* product name and price */}
+                <div className="flex flex-col gap-2">
+                  <p className="text-base text-gray-50">{item?.title}</p>
+                  <p className="text-sm font-semibold text-gray-300 block">
+                    $ {item?.price}
+                  </p>
+                </div>
 
-            {/* product quantity (incr/decr) */}
-            <div className="group flex ml-auto gap-2 cursor-pointer items-center">
-              <motion.div whileTap={{ scale: 0.75 }}>
-                <BiMinus className="text-gray-50" />
-              </motion.div>
+                {/* product quantity (incr/decr) */}
+                <div className="group flex ml-auto gap-2 cursor-pointer items-center">
+                  <motion.div whileTap={{ scale: 0.75 }}>
+                    <BiMinus className="text-gray-50" />
+                  </motion.div>
 
-              <p className="flex w-5 h-5 text-gray-50 bg-cartBg rounded-sm items-center justify-center">
-                1
-              </p>
+                  <p className="flex w-5 h-5 text-gray-50 bg-cartBg rounded-sm items-center justify-center">
+                    {item?.quantity}
+                  </p>
 
-              <motion.div whileTap={{ scale: 0.75 }}>
-                <BiPlus className="text-gray-50" />
-              </motion.div>
-            </div>
-          </div>
+                  <motion.div whileTap={{ scale: 0.75 }}>
+                    <BiPlus className="text-gray-50" />
+                  </motion.div>
+                </div>
+              </div>
+            ))}
 
           {/* Cart -> Total Summary */}
           <div className="flex flex-col flex-1 w-full px-8 py-2 bg-cartTotal rounded-t-[2rem] items-center justify-evenly">
